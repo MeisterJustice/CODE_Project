@@ -26,7 +26,7 @@ exports.isAuthorized = (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
     jwt.verify(token, jwtSecret, (err, decoded) => {
-      if (decoded && decoded.id === req.params.user_id) {
+      if (decoded && decoded.id === req.query.user_id) {
         return next();
       } else {
         return next({

@@ -12,7 +12,7 @@ const { port, mongo_local_connection_string } = require("./config");
 mongoose.set("debug", true);
 mongoose.Promise = Promise;
 mongoose.connect(
-    mongo_local_connection_string,
+  mongo_local_connection_string,
   {
     keepAlive: true,
     useCreateIndex: true,
@@ -31,8 +31,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // REQUIRE AND CONFIGURE ROUTES
 const userRoute = require("./routes/user");
+const photoRoute = require("./routes/photo");
 
 app.use("/api/v1/user", userRoute);
+app.use("/api/v1/photo", photoRoute);
 
 // but if non of those routes are reached
 app.use(function (req, res, next) {

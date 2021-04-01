@@ -1,19 +1,28 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router({ mergeParams: true });
 
-const {
-    getUsers
-} = require('../controllers/user');
+const { signin, signup, updateUser, getUser } = require("../controllers/user");
 
-const {isAuthenticated, isAuthorized} = require("../middleware")
+const { isAuthenticated, isAuthorized } = require("../middleware");
 
-
-// @Route            >   POST  /api/v1/user
-// @Description      >   View All Users
+// @Route            >   POST  /api/v1/user/signup
+// @Description      >   Signup
 // @Access Control   >   Public
-router.post('/',
-    isAuthenticated,
-    getUsers
-);
+router.post("/signup", signup);
+
+// @Route            >   POST  /api/v1/user/signin
+// @Description      >   Signin
+// @Access Control   >   Public
+router.post("/signup", signin);
+
+// @Route            >   GET  /api/v1/user/view
+// @Description      >   View Users
+// @Access Control   >   Private
+router.post("/view", getUser, isAuthenticated, isAuthorized);
+
+// @Route            >   PUT  /api/v1/user/view
+// @Description      >   Update User
+// @Access Control   >   Public
+router.put("/view", updateUser, isAuthenticated, isAuthorized);
 
 module.exports = router;
