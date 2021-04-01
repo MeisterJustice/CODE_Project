@@ -32,9 +32,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // REQUIRE AND CONFIGURE ROUTES
 const userRoute = require("./routes/user");
 const photoRoute = require("./routes/photo");
+const scheduleRoute = require("./routes/schedule");
 
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/photo", photoRoute);
+app.use("/api/v1/schedule", scheduleRoute);
 
 // but if non of those routes are reached
 app.use(function (req, res, next) {
