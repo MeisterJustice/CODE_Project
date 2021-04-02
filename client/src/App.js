@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from "react-redux";
+import { configureStore } from "./store";
+import { BrowserRouter as Router } from "react-router-dom";
+import Main from "./routes/";
+import { setAuthorizationToken, setCurrentUser } from "./store/actions/auth";
+import jwtDecode from "jwt-decode";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const store = configureStore();
+
+if (localStorage.jwtToken) {
+  setAuthorizationToken(localStorage.jwtToken);
+  // prevent someone from manually tampering with the key of jwtToken in localStorage
+  try {
+    store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
+  } catch (err) {
+    store.dispatch(setCurrentUser({}));
+  }
 }
+
+const App = () => {
+  return (
+    <Provider store={store}>
+      <Router>
+        <div>
+          <Main />
+        </div>
+      </Router>
+    </Provider>
+  );
+};
 
 export default App;

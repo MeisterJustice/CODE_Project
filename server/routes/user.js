@@ -13,7 +13,7 @@ router.post("/signup", signup);
 // @Route            >   POST  /api/v1/user/signin
 // @Description      >   Signin
 // @Access Control   >   Public
-router.post("/signup", signin);
+router.post("/signin", signin);
 
 // @Route            >   GET  /api/v1/user/view
 // @Description      >   View Users

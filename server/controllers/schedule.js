@@ -7,7 +7,7 @@ exports.createSchedule = async (req, res, next) => {
     res.status(201).json({
       status: "success",
       message: "schedule created successfully",
-      data: unit,
+      data: schedule,
     });
   } catch (err) {
     next(err);
