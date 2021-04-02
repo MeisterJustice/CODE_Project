@@ -42,9 +42,13 @@ function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
     errors: state.errors,
+    schedules: state.schedules,
   };
 }
 
 export default withRouter(
-  connect(mapStateToProps, { authUser, removeError })(Main)
+  connect(mapStateToProps, {
+    authUser,
+    removeError,
+  })(Main)
 );

@@ -8,6 +8,7 @@ const scheduleSchema = new Schema(
     dateAndTime: Date,
     phoneNumber: String,
     extras: [String],
+    cutType: String,
   },
   {
     timestamps: true,
