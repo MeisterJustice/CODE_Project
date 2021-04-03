@@ -10,6 +10,7 @@ import Box from "@material-ui/core/Box";
 import { useState } from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Alerts from "../Snackbar";
+import ScrollAnimation from "react-animate-on-scroll";
 
 const Schedule = (props) => {
   const [data, setData] = useState({
@@ -64,9 +65,11 @@ const Schedule = (props) => {
         severity="success"
         message="Scheduled Sucessfully! You'll be contacted by the barber to confirm your schedule"
       />
-      <Box pt={10} className="title" textAlign="center">
-        Schedule a Cut
-      </Box>
+      <ScrollAnimation animateIn="bounceInRight">
+        <Box pt={10} className="title" textAlign="center">
+          Schedule a Cut
+        </Box>
+      </ScrollAnimation>
       <Box
         pt={3}
         display="flex"

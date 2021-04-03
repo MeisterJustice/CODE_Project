@@ -44,9 +44,13 @@ exports.getSchedule = async (req, res, next) => {
     }
 
     if (req.query.startDate && req.query.endDate) {
-      dateAndTime = {
-        $gte: new Date(new Date(req.query.startDate).setHours(00, 00, 00)),
-        $lt: new Date(new Date(req.query.endDate).setHours(23, 59, 59)),
+      options.dateAndTime = {
+        $gte: new Date(
+          new Date(decodeURIComponent(req.query.startDate)).setHours(00, 00, 00)
+        ),
+        $lt: new Date(
+          new Date(decodeURIComponent(req.query.endDate)).setHours(23, 59, 59)
+        ),
       };
     }
 

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const scheduleSchema = new Schema(
   {
     fullName: { type: String },
-    location: { name: String, address: String },
+    location: { type: String },
     dateAndTime: Date,
     phoneNumber: String,
     extras: [String],

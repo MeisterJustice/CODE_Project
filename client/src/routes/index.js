@@ -6,6 +6,7 @@ import { removeError } from "../store/actions/errors";
 // import withAuth from "../hocs/withAuth";
 import HomePage from "../containers/HomePage/";
 import LoginPage from "../containers/LoginPage/";
+import AdminPage from "../containers/AdminPage/";
 
 const Main = (props) => {
   const { authUser, errors, removeError, currentUser } = props;
@@ -17,6 +18,13 @@ const Main = (props) => {
           path="/"
           render={(props) => (
             <HomePage errors={errors} currentUser={currentUser} {...props} />
+          )}
+        />
+        <Route
+          exact
+          path="/admin"
+          render={(props) => (
+            <AdminPage errors={errors} currentUser={currentUser} {...props} />
           )}
         />
         <Route

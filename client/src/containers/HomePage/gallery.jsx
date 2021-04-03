@@ -3,7 +3,7 @@ import Box from "@material-ui/core/Box";
 
 const Gallery = (props) => {
   return (
-    <Box mb={10}>
+    <Box id="gallery" mb={10}>
       <Box pt={10} pb={5} className="title" textAlign="center">
         Photo Gallery
       </Box>

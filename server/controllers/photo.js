@@ -21,7 +21,7 @@ exports.createPhoto = async (req, res, next) => {
 
         fs.unlinkSync(file.path);
       }
-      req.body.photos = imageUrls;
+      req.body.photo = imageUrls[0];
     } else {
       return next({
         status: 400,
