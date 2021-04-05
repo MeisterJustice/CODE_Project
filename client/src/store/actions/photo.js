@@ -9,7 +9,7 @@ export const loadPhotos = (photo) => ({
 
 export const fetchPhotos = (query) => {
   return (dispatch) => {
-    return apiCall("get", `/api/v1/photo?${query}`)
+    return apiCall("get", `/api/v1/photo`)
       .then((res) => {
         dispatch(loadPhotos(res.data));
       })

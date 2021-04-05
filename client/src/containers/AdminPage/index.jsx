@@ -7,6 +7,8 @@ import { fetchSchedules } from "../../store/actions/schedule";
 import { createPhoto } from "../../store/actions/photo";
 import Moment from "react-moment";
 import { Link } from "react-router-dom";
+import Photo from "./photo";
+import Alerts from "../Snackbar";
 
 const date = new Date();
 const yesterday = new Date(date);
@@ -14,6 +16,20 @@ const yesterdayDate = new Date(yesterday.setDate(yesterday.getDate() - 1));
 
 const AdminPage = (props) => {
   const [isToday, setIsToday] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [open1, setOpen1] = useState(false);
+
+  const handleClose1 = () => {
+    setOpen1(false);
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     if (isToday) {
@@ -28,6 +44,12 @@ const AdminPage = (props) => {
   }, [isToday]);
   return (
     <div>
+      <Alerts
+        open={open1}
+        handleClose={handleClose1}
+        severity="success"
+        message="Photo successfully added to gallery!"
+      />
       <div className="header">
         <div className="logo">WiseCuts</div>
         <div className="header-inline">
@@ -37,7 +59,12 @@ const AdminPage = (props) => {
         </div>
       </div>
       <Container>
-        <Box border={1} boxShadow={1} my={10}>
+        <Box mt={10} />
+        <button onClick={handleClickOpen} className="schedule-btn">
+          Add Photo
+        </button>
+
+        <Box border={1} boxShadow={1} my={5}>
           <Box
             borderBottom={1}
             p={3}
@@ -104,6 +131,14 @@ const AdminPage = (props) => {
             </Box>
           ))}
         </Box>
+        <Photo
+          handleClickOpen={handleClickOpen}
+          open={open}
+          handleClose={handleClose}
+          createPhoto={props.createPhoto}
+          currentUser={props.currentUser}
+          setOpen={setOpen1}
+        />
       </Container>
     </div>
   );

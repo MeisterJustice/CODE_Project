@@ -40,3 +40,41 @@ exports.createPhoto = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.getPhotos = async (req, res, next) => {
+  try {
+    let filter = {};
+    let select = {};
+    let options = {};
+
+    if (req.query.limit) {
+      filter.limit = parseInt(req.query.limit);
+    }
+
+    if (req.query.skip) {
+      filter.skip = parseInt(req.query.skip);
+    }
+
+    if (req.query.select) {
+      let selectArray = [...req.query.select.split(",")];
+      for (let i = 0; i < selectArray.length; i++) {
+        select[`${selectArray[i]}`] = 1;
+      }
+    }
+
+    const photos = await Photo.find({ ...options }, null, {
+      ...filter,
+    })
+      .select({ ...select })
+      .lean()
+      .exec();
+
+    res.status(200).json({
+      status: "success",
+      message: "photos successfully fetched",
+      data: photos,
+    });
+  } catch (err) {
+    next(err);
+  }
+};

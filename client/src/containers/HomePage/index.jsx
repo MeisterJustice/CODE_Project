@@ -3,10 +3,12 @@ import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Schedule from "./Schedule";
 import { connect } from "react-redux";
-import { createSchedule, fetchSchedules } from "../../store/actions/schedule";
+import { createSchedule } from "../../store/actions/schedule";
 import Gallery from "./gallery";
+import { fetchPhotos } from "../../store/actions/photo";
 import ScrollAnimation from "react-animate-on-scroll";
 import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
 
 const HomePage = (props) => {
   const history = useHistory();
@@ -14,6 +16,10 @@ const HomePage = (props) => {
   const handleNavigate = () => {
     history.push(props.currentUser.isAuthenticated ? "/admin" : "/signin");
   };
+
+  useEffect(() => {
+    props.fetchPhotos();
+  }, []);
 
   return (
     <div>
@@ -59,7 +65,7 @@ const HomePage = (props) => {
       </div>
       <Container>
         <Schedule createSchedule={props.createSchedule} />
-        <Gallery />
+        {props.photos.length > 0 && <Gallery photos={props.photos} />}
       </Container>
     </div>
   );
@@ -69,9 +75,11 @@ function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
     errors: state.errors,
+    photos: state.photos,
   };
 }
 
 export default connect(mapStateToProps, {
   createSchedule,
+  fetchPhotos,
 })(HomePage);
