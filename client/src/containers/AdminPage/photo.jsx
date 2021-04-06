@@ -41,8 +41,9 @@ export default function Photo(props) {
       });
   };
   return (
-    <div>
+    <Box>
       <Dialog
+        style={{ padding: "40px" }}
         open={props.open}
         onClose={props.handleClose}
         aria-labelledby="form-dialog-title"
@@ -78,14 +79,15 @@ export default function Photo(props) {
             Cancel
           </Button>
           {loading ? (
-            <CircularProgress />
+            <CircularProgress size="20px" />
           ) : (
             <Button onClick={handleSubmit} color="primary">
               Post Photo
             </Button>
           )}
         </DialogActions>
+        <Box pb={5} />
       </Dialog>
-    </div>
+    </Box>
   );
 }

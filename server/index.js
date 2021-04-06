@@ -7,22 +7,14 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 // MONGO SETUP ==============================
-const { port, mongo_local_connection_string } = require("./config");
+const {
+  port,
+  mongo_local_connection_string,
+  mongo_cloud_connection_string,
+} = require("./config");
 
 mongoose.set("debug", true);
 mongoose.Promise = Promise;
-mongoose.connect(
-  mongo_local_connection_string,
-  {
-    keepAlive: true,
-    useCreateIndex: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-  () => {
-    console.log("database connected");
-  }
-);
 
 // SERVER MIDDLEWARE SETUP
 app.use(cors());
@@ -49,6 +41,18 @@ app.use(function (req, res, next) {
 // this helps to handle error appropriately in the client
 app.use(errorHandler);
 
-app.listen(port, () => {
-  console.log(`server started on port ${port}`);
-});
+mongoose.connect(
+  mongo_cloud_connection_string,
+  {
+    keepAlive: true,
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  () => {
+    console.log("database connected");
+    app.listen(port, () => {
+      console.log(`server started on port ${port}`);
+    });
+  }
+);
