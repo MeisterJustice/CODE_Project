@@ -4,18 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "10.16.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dexiouz/axel-server.git"
+    "url": "git+https://github.com/MeisterJustice/CODE_Project.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dexiouz/axel-server/issues"
+    "url": "https://github.com/MeisterJustice/CODE_Project/issues"
   },
-  "homepage": "https://github.com/dexiouz/axel-server#readme",
+  "homepage": "https://github.com/MeisterJustice/CODE_Project#readme",
   "dependencies": {
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
