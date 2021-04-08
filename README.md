@@ -9,3 +9,7 @@ Install dependencies:  npm install
 - Go into the client folder:  cd client/
 - Install dependencies:  yarn install
 - Start the client:  yarn start
+
+<h3>login as admin with below credentials</h3>
+- email: wiseman@gmail.com
+- password: wiseman
